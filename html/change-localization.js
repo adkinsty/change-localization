@@ -43,9 +43,10 @@ flowScheduler.add(experimentInit);
 flowScheduler.add(instructionsRoutineBegin());
 flowScheduler.add(instructionsRoutineEachFrame());
 flowScheduler.add(instructionsRoutineEnd());
-flowScheduler.add(trialRoutineBegin());
-flowScheduler.add(trialRoutineEachFrame());
-flowScheduler.add(trialRoutineEnd());
+const trialsLoopScheduler = new Scheduler(psychoJS);
+flowScheduler.add(trialsLoopBegin, trialsLoopScheduler);
+flowScheduler.add(trialsLoopScheduler);
+flowScheduler.add(trialsLoopEnd);
 flowScheduler.add(quitPsychoJS, '', true);
 
 // quit if user presses Cancel in dialog box:
@@ -109,8 +110,8 @@ function experimentInit() {
     win: psychoJS.window, name: 'stim1', 
     width: [0.1, 0.1][0], height: [0.1, 0.1][1],
     ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color('black'),
-    fillColor: new util.Color('black'),
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
     opacity: 1, depth: -1, interpolate: true,
   });
   
@@ -210,6 +211,41 @@ function instructionsRoutineEnd(trials) {
 }
 
 
+var trials;
+var currentLoop;
+function trialsLoopBegin(thisScheduler) {
+  // set up handler to look after randomisation of conditions etc
+  trials = new TrialHandler({
+    psychoJS: psychoJS,
+    nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
+    extraInfo: expInfo, originPath: undefined,
+    trialList: 'trials.xlsx',
+    seed: undefined, name: 'trials'
+  });
+  psychoJS.experiment.addLoop(trials); // add the loop to the experiment
+  currentLoop = trials;  // we're now the current loop
+
+  // Schedule all the trials in the trialList:
+  for (const thisTrial of trials) {
+    const snapshot = trials.getSnapshot();
+    thisScheduler.add(importConditions(snapshot));
+    thisScheduler.add(trialRoutineBegin(snapshot));
+    thisScheduler.add(trialRoutineEachFrame(snapshot));
+    thisScheduler.add(trialRoutineEnd(snapshot));
+    thisScheduler.add(endLoopIteration(thisScheduler, snapshot));
+  }
+
+  return Scheduler.Event.NEXT;
+}
+
+
+function trialsLoopEnd() {
+  psychoJS.experiment.removeLoop(trials);
+
+  return Scheduler.Event.NEXT;
+}
+
+
 var gotValidClick;
 var trialComponents;
 function trialRoutineBegin(trials) {
@@ -220,9 +256,19 @@ function trialRoutineBegin(trials) {
     frameN = -1;
     // update component parameters for each repeat
     // setup some python lists for storing info about the mouse
+    // current position of the mouse:
+    mouse.x = [];
+    mouse.y = [];
+    mouse.leftButton = [];
+    mouse.midButton = [];
+    mouse.rightButton = [];
+    mouse.time = [];
     mouse.clicked_name = [];
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
+    stim1.setPos(pos1);
+    stim1.setFillColor(new util.Color('color1'));
+    stim1.setLineColor(new util.Color('color1'));
     // keep track of which components have finished
     trialComponents = [];
     trialComponents.push(mouse);
@@ -261,6 +307,13 @@ function trialRoutineEachFrame(trials) {
       if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
         prevButtonState = buttons;
         if (buttons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          const xys = mouse.getPos();
+          mouse.x.push(xys[0]);
+          mouse.y.push(xys[1]);
+          mouse.leftButton.push(buttons[0]);
+          mouse.midButton.push(buttons[1]);
+          mouse.rightButton.push(buttons[2]);
+          mouse.time.push(mouse.mouseClock.getTime());
           // check if the mouse was inside our 'clickable' objects
           gotValidClick = false;
           for (const obj of [stim1]) {
@@ -270,8 +323,9 @@ function trialRoutineEachFrame(trials) {
               mouse.clicked_pos.push(obj.pos)
             }
           }
-          // abort routine on response
-          continueRoutine = false;
+          if (gotValidClick === true) { // abort routine on response
+            continueRoutine = false;
+          }
         }
       }
     }
@@ -321,17 +375,15 @@ function trialRoutineEnd(trials) {
       }
     }
     // store data for thisExp (ExperimentHandler)
-    const xys = mouse.getPos();
-    const buttons = mouse.getPressed();
-    psychoJS.experiment.addData('mouse.x', xys[0]);
-    psychoJS.experiment.addData('mouse.y', xys[1]);
-    psychoJS.experiment.addData('mouse.leftButton', buttons[0]);
-    psychoJS.experiment.addData('mouse.midButton', buttons[1]);
-    psychoJS.experiment.addData('mouse.rightButton', buttons[2]);
-    if (mouse.clicked_name.length > 0) {
-      psychoJS.experiment.addData('mouse.clicked_name', mouse.clicked_name[0]);}
-    if (mouse.clicked_pos.length > 0) {
-      psychoJS.experiment.addData('mouse.clicked_pos', mouse.clicked_pos[0]);}
+    if (mouse.x) {  psychoJS.experiment.addData('mouse.x', mouse.x[0])};
+    if (mouse.y) {  psychoJS.experiment.addData('mouse.y', mouse.y[0])};
+    if (mouse.leftButton) {  psychoJS.experiment.addData('mouse.leftButton', mouse.leftButton[0])};
+    if (mouse.midButton) {  psychoJS.experiment.addData('mouse.midButton', mouse.midButton[0])};
+    if (mouse.rightButton) {  psychoJS.experiment.addData('mouse.rightButton', mouse.rightButton[0])};
+    if (mouse.time) {  psychoJS.experiment.addData('mouse.time', mouse.time[0])};
+    if (mouse.clicked_name) {  psychoJS.experiment.addData('mouse.clicked_name', mouse.clicked_name[0])};
+    if (mouse.clicked_pos) {  psychoJS.experiment.addData('mouse.clicked_pos', mouse.clicked_pos[0])};
+    
     // the Routine "trial" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
