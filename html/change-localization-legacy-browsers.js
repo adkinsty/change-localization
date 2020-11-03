@@ -344,7 +344,7 @@ function trialRoutineEachFrame(trials) {
     }
     
     if (stim1.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      stim1.setPos(pos1);
+      stim1.setPos([x_pos1, y_pos1]);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {

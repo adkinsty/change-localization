@@ -90,7 +90,7 @@
         <Param name="name" updates="None" val="stim1" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="set every frame" val="$pos1" valType="code"/>
+        <Param name="pos" updates="set every frame" val="[x_pos1,y_pos1]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
         <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
