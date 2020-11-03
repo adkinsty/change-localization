@@ -109,8 +109,8 @@ function experimentInit() {
     win: psychoJS.window, name: 'stim1', 
     width: [0.1, 0.1][0], height: [0.1, 0.1][1],
     ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color(1.0),
-    fillColor: new util.Color(1.0),
+    lineWidth: 1, lineColor: new util.Color('black'),
+    fillColor: new util.Color('black'),
     opacity: 1, depth: -1, interpolate: true,
   });
   
@@ -223,8 +223,6 @@ function trialRoutineBegin(trials) {
     mouse.clicked_name = [];
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
-    stim1.setFillColor(new util.Color(color1));
-    stim1.setLineColor(new util.Color(color1));
     // keep track of which components have finished
     trialComponents = [];
     trialComponents.push(mouse);

@@ -80,10 +80,10 @@
       <PolygonComponent name="stim1">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="fillColor" updates="set every repeat" val="$color1" valType="str"/>
+        <Param name="fillColor" updates="constant" val="black" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="lineColor" updates="set every repeat" val="$color1" valType="str"/>
+        <Param name="lineColor" updates="constant" val="black" valType="str"/>
         <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="lineWidth" updates="constant" val="1" valType="code"/>
         <Param name="nVertices" updates="constant" val="4" valType="int"/>
