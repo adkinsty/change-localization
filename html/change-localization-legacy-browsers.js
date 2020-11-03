@@ -77,9 +77,9 @@ var arrayClock;
 var fixA;
 var stim1;
 var probeClock;
-var fixB;
 var mouse;
 var probe1;
+var fixB;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -100,9 +100,9 @@ function experimentInit() {
   arrayClock = new util.Clock();
   fixA = new visual.ShapeStim ({
     win: psychoJS.window, name: 'fixA', 
-    vertices: 'cross', size:[0.1, 0.1],
+    vertices: 'cross', size:[0.05, 0.05],
     ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color([1, 1, 1]),
+    lineWidth: 0.5, lineColor: new util.Color([1, 1, 1]),
     fillColor: new util.Color([1, 1, 1]),
     opacity: 1, depth: 0, interpolate: true,
   });
@@ -118,15 +118,6 @@ function experimentInit() {
   
   // Initialize components for Routine "probe"
   probeClock = new util.Clock();
-  fixB = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'fixB', 
-    vertices: 'cross', size:[0.1, 0.1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color([1, 1, 1]),
-    fillColor: new util.Color([1, 1, 1]),
-    opacity: 1, depth: -1, interpolate: true,
-  });
-  
   mouse = new core.Mouse({
     win: psychoJS.window,
   });
@@ -137,7 +128,16 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -1, interpolate: true,
+  });
+  
+  fixB = new visual.ShapeStim ({
+    win: psychoJS.window, name: 'fixB', 
+    vertices: 'cross', size:[0.05, 0.05],
+    ori: 0, pos: [0, 0],
+    lineWidth: 0.5, lineColor: new util.Color([1, 1, 1]),
+    fillColor: new util.Color([1, 1, 1]),
+    opacity: 1, depth: 0, interpolate: true,
   });
   
   // Create some handy timers
@@ -283,7 +283,7 @@ function arrayRoutineBegin(trials) {
     t = 0;
     arrayClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(1.000000);
+    routineTimer.add(2.000000);
     // update component parameters for each repeat
     stim1.setPos([stim1_x, stim1_y]);
     stim1.setFillColor(new util.Color(stim1_color));
@@ -321,13 +321,13 @@ function arrayRoutineEachFrame(trials) {
       fixA.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (fixA.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       fixA.setAutoDraw(false);
     }
     
     // *stim1* updates
-    if (t >= 0.5 && stim1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && stim1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim1.tStart = t;  // (not accounting for frame time here)
       stim1.frameNStart = frameN;  // exact frame index
@@ -335,7 +335,7 @@ function arrayRoutineEachFrame(trials) {
       stim1.setAutoDraw(true);
     }
 
-    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim1.setAutoDraw(false);
     }
@@ -387,7 +387,7 @@ function probeRoutineBegin(trials) {
     t = 0;
     probeClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(1.500000);
+    routineTimer.add(10.000000);
     // update component parameters for each repeat
     // setup some python lists for storing info about the mouse
     // current position of the mouse:
@@ -405,9 +405,9 @@ function probeRoutineBegin(trials) {
     probe1.setLineColor(new util.Color(probe1_color));
     // keep track of which components have finished
     probeComponents = [];
-    probeComponents.push(fixB);
     probeComponents.push(mouse);
     probeComponents.push(probe1);
+    probeComponents.push(fixB);
     
     probeComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -428,22 +428,8 @@ function probeRoutineEachFrame(trials) {
     t = probeClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    
-    // *fixB* updates
-    if (t >= 0.0 && fixB.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      fixB.tStart = t;  // (not accounting for frame time here)
-      fixB.frameNStart = frameN;  // exact frame index
-      
-      fixB.setAutoDraw(true);
-    }
-
-    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      fixB.setAutoDraw(false);
-    }
     // *mouse* updates
-    if (t >= 0.5 && mouse.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 3 && mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       mouse.tStart = t;  // (not accounting for frame time here)
       mouse.frameNStart = frameN;  // exact frame index
@@ -452,7 +438,7 @@ function probeRoutineEachFrame(trials) {
       mouse.mouseClock.reset();
       prevButtonState = mouse.getPressed();  // if button is down already this ISN'T a new click
       }
-    frameRemains = 0.5 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 3 + 7 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (mouse.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       mouse.status = PsychoJS.Status.FINISHED;
   }
@@ -485,7 +471,7 @@ function probeRoutineEachFrame(trials) {
     }
     
     // *probe1* updates
-    if (t >= 0.5 && probe1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 3 && probe1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe1.tStart = t;  // (not accounting for frame time here)
       probe1.frameNStart = frameN;  // exact frame index
@@ -493,9 +479,23 @@ function probeRoutineEachFrame(trials) {
       probe1.setAutoDraw(true);
     }
 
-    frameRemains = 0.5 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 3 + 7 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (probe1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       probe1.setAutoDraw(false);
+    }
+    
+    // *fixB* updates
+    if (t >= 0.0 && fixB.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      fixB.tStart = t;  // (not accounting for frame time here)
+      fixB.frameNStart = frameN;  // exact frame index
+      
+      fixB.setAutoDraw(true);
+    }
+
+    frameRemains = 0.0 + 3 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      fixB.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
