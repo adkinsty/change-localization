@@ -392,7 +392,7 @@ function probeRoutineBegin(trials) {
     t = 0;
     probeClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(10.000000);
+    routineTimer.add(8.000000);
     // update component parameters for each repeat
     // setup some python lists for storing info about the mouse
     // current position of the mouse:
@@ -433,7 +433,7 @@ function probeRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     // *mouse* updates
-    if (t >= 3 && mouse.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 4 && mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       mouse.tStart = t;  // (not accounting for frame time here)
       mouse.frameNStart = frameN;  // exact frame index
@@ -442,7 +442,7 @@ function probeRoutineEachFrame(trials) {
       mouse.mouseClock.reset();
       prevButtonState = mouse.getPressed();  // if button is down already this ISN'T a new click
       }
-    frameRemains = 3 + 7 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (mouse.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       mouse.status = PsychoJS.Status.FINISHED;
   }
@@ -475,7 +475,7 @@ function probeRoutineEachFrame(trials) {
     }
     
     // *probe1* updates
-    if (t >= 3 && probe1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 4 && probe1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe1.tStart = t;  // (not accounting for frame time here)
       probe1.frameNStart = frameN;  // exact frame index
@@ -483,7 +483,7 @@ function probeRoutineEachFrame(trials) {
       probe1.setAutoDraw(true);
     }
 
-    frameRemains = 3 + 7 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (probe1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       probe1.setAutoDraw(false);
     }
@@ -497,7 +497,7 @@ function probeRoutineEachFrame(trials) {
       fixB.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 3 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       fixB.setAutoDraw(false);
     }
