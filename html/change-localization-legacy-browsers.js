@@ -512,7 +512,7 @@ function probeRoutineEachFrame(trials) {
           mouse.time.push(mouse.mouseClock.getTime());
           // check if the mouse was inside our 'clickable' objects
           gotValidClick = false;
-          for (const obj of [stim1]) {
+          for (const obj of [probe1,probe2]) {
             if (obj.contains(mouse)) {
               gotValidClick = true;
               mouse.clicked_name.push(obj.name)

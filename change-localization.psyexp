@@ -162,7 +162,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <MouseComponent name="mouse">
-        <Param name="clickable" updates="constant" val="stim1" valType="code"/>
+        <Param name="clickable" updates="constant" val="probe1,probe2" valType="code"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="forceEndRoutineOnPress" updates="constant" val="valid click" valType="str"/>
