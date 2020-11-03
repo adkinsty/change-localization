@@ -267,8 +267,8 @@ function trialRoutineBegin(trials) {
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
     stim1.setPos(pos1);
-    stim1.setFillColor(new util.Color('color1'));
-    stim1.setLineColor(new util.Color('color1'));
+    stim1.setFillColor(new util.Color(color1));
+    stim1.setLineColor(new util.Color(color1));
     // keep track of which components have finished
     trialComponents = [];
     trialComponents.push(mouse);
