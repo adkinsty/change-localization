@@ -267,6 +267,7 @@ function trialRoutineBegin(trials) {
     mouse.clicked_name = [];
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
+    stim1.setPos([x_pos1, y_pos1]);
     stim1.setFillColor(new util.Color(color1));
     stim1.setLineColor(new util.Color(color1));
     // keep track of which components have finished
@@ -346,10 +347,6 @@ function trialRoutineEachFrame(trials) {
     frameRemains = 0.0 + 10 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim1.setAutoDraw(false);
-    }
-    
-    if (stim1.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      stim1.setPos([x_pos1, y_pos1]);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
