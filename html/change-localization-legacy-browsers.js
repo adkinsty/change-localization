@@ -211,7 +211,6 @@ function trialRoutineBegin(trials) {
     t = 0;
     trialClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(1.000000);
     // update component parameters for each repeat
     // setup some python lists for storing info about the mouse
     mouse.clicked_name = [];
@@ -253,10 +252,6 @@ function trialRoutineEachFrame(trials) {
       mouse.mouseClock.reset();
       prevButtonState = mouse.getPressed();  // if button is down already this ISN'T a new click
       }
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (mouse.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      mouse.status = PsychoJS.Status.FINISHED;
-  }
     if (mouse.status === PsychoJS.Status.STARTED) {  // only update if started and not finished!
       let buttons = mouse.getPressed();
       if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
@@ -286,10 +281,6 @@ function trialRoutineEachFrame(trials) {
       stim1.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (stim1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      stim1.setAutoDraw(false);
-    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -308,7 +299,7 @@ function trialRoutineEachFrame(trials) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine && routineTimer.getTime() > 0) {
+    if (continueRoutine) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -337,6 +328,9 @@ function trialRoutineEnd(trials) {
       psychoJS.experiment.addData('mouse.clicked_name', mouse.clicked_name[0]);}
     if (mouse.clicked_pos.length > 0) {
       psychoJS.experiment.addData('mouse.clicked_pos', mouse.clicked_pos[0]);}
+    // the Routine "trial" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
     return Scheduler.Event.NEXT;
   };
 }
