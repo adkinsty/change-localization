@@ -2,12 +2,15 @@ library(tidyverse)
 
 setwd("/Users/adkinsty/Desktop/change-localization")
 
-# Colors:      Black      Orange     Skyblue   BluGreen    Yellow      Blue    Vermillion  RedPurple
-all_colors <- c("#000000", "#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00", "#cc79a7")
-all_pos <- expand.grid(x=seq(-.4,.4,.2),y=seq(-.4,.4,.2))
-
 N <- 5
 set_size <- 5
+
+height <- .05
+width <- .05
+
+# Colors:      Black      Orange     Skyblue   BluGreen    Yellow      Blue    Vermillion  RedPurple
+all_colors <- c("#000000", "#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00", "#cc79a7")
+all_pos <- expand.grid(x=seq(-.3,.3,.15),y=seq(-.3,.3,.15))
 
 dat <- tibble()
 
@@ -18,7 +21,7 @@ for (i in 1:N) {
   switch_i <- sample(x = 1:set_size, size = 1)
   new_color_i <- sample(x = all_colors[!all_colors %in% color_i], size = 1)
 
-  dat_i <- tibble(trial = i, answer = switch_i)
+  dat_i <- tibble(trial = i, answer = switch_i, height = height, width = width)
 
   for (k in 1:set_size) {
 

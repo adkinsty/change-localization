@@ -125,7 +125,7 @@ function experimentInit() {
   
   stim1 = new visual.Rect ({
     win: psychoJS.window, name: 'stim1', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -134,7 +134,7 @@ function experimentInit() {
   
   stim2 = new visual.Rect ({
     win: psychoJS.window, name: 'stim2', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -143,7 +143,7 @@ function experimentInit() {
   
   stim3 = new visual.Rect ({
     win: psychoJS.window, name: 'stim3', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -152,7 +152,7 @@ function experimentInit() {
   
   stim4 = new visual.Rect ({
     win: psychoJS.window, name: 'stim4', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -161,7 +161,7 @@ function experimentInit() {
   
   stim5 = new visual.Rect ({
     win: psychoJS.window, name: 'stim5', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -185,7 +185,7 @@ function experimentInit() {
   mouse.mouseClock = new util.Clock();
   probe1 = new visual.Rect ({
     win: psychoJS.window, name: 'probe1', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -194,7 +194,7 @@ function experimentInit() {
   
   probe2 = new visual.Rect ({
     win: psychoJS.window, name: 'probe2', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -203,7 +203,7 @@ function experimentInit() {
   
   probe3 = new visual.Rect ({
     win: psychoJS.window, name: 'probe3', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -212,7 +212,7 @@ function experimentInit() {
   
   probe4 = new visual.Rect ({
     win: psychoJS.window, name: 'probe4', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -221,7 +221,7 @@ function experimentInit() {
   
   probe5 = new visual.Rect ({
     win: psychoJS.window, name: 'probe5', 
-    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
@@ -372,18 +372,23 @@ function arrayRoutineBegin(trials) {
     routineTimer.add(2.000000);
     // update component parameters for each repeat
     stim1.setPos([x1, y1]);
+    stim1.setSize([width, height]);
     stim1.setFillColor(new util.Color(stim_color1));
     stim1.setLineColor(new util.Color(stim_color1));
     stim2.setPos([x2, y2]);
+    stim2.setSize([width, height]);
     stim2.setFillColor(new util.Color(stim_color2));
     stim2.setLineColor(new util.Color(stim_color2));
     stim3.setPos([x3, y3]);
+    stim3.setSize([width, height]);
     stim3.setFillColor(new util.Color(stim_color3));
     stim3.setLineColor(new util.Color(stim_color3));
     stim4.setPos([x4, y4]);
+    stim4.setSize([width, height]);
     stim4.setFillColor(new util.Color(stim_color4));
     stim4.setLineColor(new util.Color(stim_color4));
     stim5.setPos([x5, y5]);
+    stim5.setSize([width, height]);
     stim5.setFillColor(new util.Color(stim_color5));
     stim5.setLineColor(new util.Color(stim_color5));
     // keep track of which components have finished
@@ -558,18 +563,23 @@ function probeRoutineBegin(trials) {
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
     probe1.setPos([x1, y1]);
+    probe1.setSize([width, height]);
     probe1.setFillColor(new util.Color(probe_color1));
     probe1.setLineColor(new util.Color(probe_color1));
     probe2.setPos([x2, y2]);
+    probe2.setSize([width, height]);
     probe2.setFillColor(new util.Color(probe_color2));
     probe2.setLineColor(new util.Color(probe_color2));
     probe3.setPos([x3, y3]);
+    probe3.setSize([width, height]);
     probe3.setFillColor(new util.Color(probe_color3));
     probe3.setLineColor(new util.Color(probe_color3));
     probe4.setPos([x4, y4]);
+    probe4.setSize([width, height]);
     probe4.setFillColor(new util.Color(probe_color4));
     probe4.setLineColor(new util.Color(probe_color4));
     probe5.setPos([x5, y5]);
+    probe5.setSize([width, height]);
     probe5.setFillColor(new util.Color(probe_color5));
     probe5.setLineColor(new util.Color(probe_color5));
     // keep track of which components have finished

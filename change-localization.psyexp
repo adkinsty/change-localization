@@ -100,7 +100,7 @@
         <Param name="pos" updates="set every repeat" val="[x1,y1]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1" valType="code"/>
@@ -125,7 +125,7 @@
         <Param name="pos" updates="set every repeat" val="[x2,y2]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1" valType="code"/>
@@ -150,7 +150,7 @@
         <Param name="pos" updates="set every repeat" val="[x3,y3]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1" valType="code"/>
@@ -175,7 +175,7 @@
         <Param name="pos" updates="set every repeat" val="[x4,y4]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1" valType="code"/>
@@ -200,7 +200,7 @@
         <Param name="pos" updates="set every repeat" val="[x5,y5]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1" valType="code"/>
@@ -270,7 +270,7 @@
         <Param name="pos" updates="set every repeat" val="[x1,y1]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="4" valType="code"/>
@@ -295,7 +295,7 @@
         <Param name="pos" updates="set every repeat" val="[x2,y2]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="4" valType="code"/>
@@ -320,7 +320,7 @@
         <Param name="pos" updates="set every repeat" val="[x3,y3]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="4" valType="code"/>
@@ -345,7 +345,7 @@
         <Param name="pos" updates="set every repeat" val="[x4,y4]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="4" valType="code"/>
@@ -370,7 +370,7 @@
         <Param name="pos" updates="set every repeat" val="[x5,y5]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
-        <Param name="size" updates="constant" val="(0.1, 0.1)" valType="code"/>
+        <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="4" valType="code"/>
