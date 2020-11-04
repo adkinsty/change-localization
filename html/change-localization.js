@@ -289,7 +289,7 @@ function experimentInit() {
   
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
-    vertices: 'star7', size: [0.05, 0.05],
+    vertices: 'star7', size: [0.025, 0.025],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
