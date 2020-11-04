@@ -904,7 +904,7 @@ function feedbackRoutineBegin(trials) {
     probe5_copy.setSize([width, height]);
     probe5_copy.setFillColor(new util.Color(probe_color5));
     probe5_copy.setLineColor(new util.Color(probe_color5));
-    click_copy.setPos(mouse.clicked.pos[0],mouse.clicked.pos[1])
+    click_copy.setPos(mouse.clicked_pos[0],mouse.clicked_pos[1])
     
     // keep track of which components have finished
     feedbackComponents = [];
