@@ -281,7 +281,7 @@ function experimentInit() {
   
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
-    vertices: 'star7', size: [0.05, 0.05],
+    vertices: 'star7', size: [0.15, 0.15],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
@@ -884,7 +884,7 @@ function feedbackRoutineBegin(trials) {
     routineTimer.add(0.500000);
     // update component parameters for each repeat
     if (mouse.clicked_pos === undefined) {
-        click_copy.setPos(2,2)
+        click_copy.setPos(.5,.5)
     } else {
         click_copy.setPos(mouse.clicked_pos[0],mouse.clicked_pos[1])
     }
@@ -909,7 +909,7 @@ function feedbackRoutineBegin(trials) {
     probe5_copy.setSize([width, height]);
     probe5_copy.setFillColor(new util.Color(probe_color5));
     probe5_copy.setLineColor(new util.Color(probe_color5));
-    click_copy.setPos([2, 2]);
+    click_copy.setPos(mouse.click_pos);
     // keep track of which components have finished
     feedbackComponents = [];
     feedbackComponents.push(probe1_copy);
