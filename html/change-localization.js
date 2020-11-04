@@ -244,8 +244,8 @@ function experimentInit() {
   feedbackClock = new util.Clock();
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
-    vertices: 'star7', size: [0.1, 0.1],
-    ori: 0, pos: [0, 0],
+    vertices: 'star7', size: [0.05, 0.05],
+    ori: 0, pos: undefined,
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
     opacity: 1, depth: 0, interpolate: true,
@@ -887,6 +887,7 @@ function feedbackRoutineBegin(trials) {
     frameN = -1;
     routineTimer.add(0.500000);
     // update component parameters for each repeat
+    click_copy.setPos();
     probe1_copy.setPos([x1, y1]);
     probe1_copy.setSize([width, height]);
     probe1_copy.setFillColor(new util.Color(probe_color1));
@@ -907,6 +908,8 @@ function feedbackRoutineBegin(trials) {
     probe5_copy.setSize([width, height]);
     probe5_copy.setFillColor(new util.Color(probe_color5));
     probe5_copy.setLineColor(new util.Color(probe_color5));
+    click_copy.setPos(mouse.clicked.pos[0],mouse.clicked.pos[1])
+    
     // keep track of which components have finished
     feedbackComponents = [];
     feedbackComponents.push(click_copy);
@@ -946,10 +949,6 @@ function feedbackRoutineEachFrame(trials) {
     frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (click_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       click_copy.setAutoDraw(false);
-    }
-    
-    if (click_copy.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      click_copy.setPos(mouse.clicked_pos);
     }
     
     // *probe1_copy* updates
@@ -1097,6 +1096,8 @@ function quitPsychoJS(message, isCompleted) {
   if (psychoJS.experiment.isEntryEmpty()) {
     psychoJS.experiment.nextEntry();
   }
+  
+  
   psychoJS.window.close();
   psychoJS.quit({message: message, isCompleted: isCompleted});
   
