@@ -236,11 +236,11 @@ function experimentInit() {
   feedbackClock = new util.Clock();
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
-    vertices: 'star7', size: [0.05, 0.05],
+    vertices: 'star7', size: [0.1, 0.1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
-    opacity: 0.9, depth: 0, interpolate: true,
+    opacity: 1, depth: 0, interpolate: true,
   });
   
   probe1_copy = new visual.Rect ({
