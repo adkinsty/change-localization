@@ -402,9 +402,9 @@
       <CodeComponent name="code">
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="if (mouse.clicked_pos === undefined) {&amp;#10;    click_copy.setPos(.5,.5)&amp;#10;} else {&amp;#10;    click_copy.setPos(mouse.clicked_pos[0],mouse.clicked_pos[1])&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="if (mouse.clicked_pos === undefined) {&amp;#10;    click_copy.setPos(0,0)&amp;#10;} else {&amp;#10;    click_copy.setPos(mouse.clicked_pos)&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
@@ -415,7 +415,7 @@
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>
       <PolygonComponent name="probe1_copy">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="1" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color1" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -440,7 +440,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <PolygonComponent name="probe2_copy">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val=".5" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color2" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -465,7 +465,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <PolygonComponent name="probe3_copy">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="1" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color3" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -490,7 +490,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <PolygonComponent name="probe4_copy">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="1" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color4" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -515,7 +515,7 @@
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <PolygonComponent name="probe5_copy">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="1" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color5" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -552,7 +552,7 @@
         <Param name="name" updates="None" val="click_copy" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="set every repeat" val="mouse.click_pos" valType="code"/>
+        <Param name="pos" updates="set every repeat" val="" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="star" valType="str"/>
         <Param name="size" updates="constant" val="(.15, .15)" valType="code"/>

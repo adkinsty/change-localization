@@ -98,11 +98,7 @@ var probe3;
 var probe4;
 var probe5;
 var feedbackClock;
-var probe1_copy;
-var probe2_copy;
-var probe3_copy;
 var probe4_copy;
-var probe5_copy;
 var click_copy;
 var globalClock;
 var routineTimer;
@@ -242,44 +238,8 @@ function experimentInit() {
   
   // Initialize components for Routine "feedback"
   feedbackClock = new util.Clock();
-  probe1_copy = new visual.Rect ({
-    win: psychoJS.window, name: 'probe1_copy', 
-    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color(1.0),
-    fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
-  });
-  
-  probe2_copy = new visual.Rect ({
-    win: psychoJS.window, name: 'probe2_copy', 
-    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color(1.0),
-    fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
-  });
-  
-  probe3_copy = new visual.Rect ({
-    win: psychoJS.window, name: 'probe3_copy', 
-    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color(1.0),
-    fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
-  });
-  
   probe4_copy = new visual.Rect ({
     win: psychoJS.window, name: 'probe4_copy', 
-    width: [1.0, 1.0][0], height: [1.0, 1.0][1],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color(1.0),
-    fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
-  });
-  
-  probe5_copy = new visual.Rect ({
-    win: psychoJS.window, name: 'probe5_copy', 
     width: [1.0, 1.0][0], height: [1.0, 1.0][1],
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
@@ -290,10 +250,10 @@ function experimentInit() {
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
     vertices: 'star7', size: [0.15, 0.15],
-    ori: 0, pos: [0, 0],
+    ori: 0, pos: undefined,
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
-    opacity: 1, depth: -6, interpolate: true,
+    opacity: 1, depth: -2, interpolate: true,
   });
   
   // Create some handy timers
@@ -888,39 +848,19 @@ function feedbackRoutineBegin(trials) {
     routineTimer.add(0.500000);
     // update component parameters for each repeat
     if (mouse.clicked_pos === undefined) {
-        click_copy.setPos(.5,.5)
+        click_copy.setPos(0,0)
     } else {
-        click_copy.setPos(mouse.clicked_pos[0],mouse.clicked_pos[1])
+        click_copy.setPos(mouse.clicked_pos)
     }
     
-    probe1_copy.setPos([x1, y1]);
-    probe1_copy.setSize([width, height]);
-    probe1_copy.setFillColor(new util.Color(probe_color1));
-    probe1_copy.setLineColor(new util.Color(probe_color1));
-    probe2_copy.setPos([x2, y2]);
-    probe2_copy.setSize([width, height]);
-    probe2_copy.setFillColor(new util.Color(probe_color2));
-    probe2_copy.setLineColor(new util.Color(probe_color2));
-    probe3_copy.setPos([x3, y3]);
-    probe3_copy.setSize([width, height]);
-    probe3_copy.setFillColor(new util.Color(probe_color3));
-    probe3_copy.setLineColor(new util.Color(probe_color3));
     probe4_copy.setPos([x4, y4]);
     probe4_copy.setSize([width, height]);
     probe4_copy.setFillColor(new util.Color(probe_color4));
     probe4_copy.setLineColor(new util.Color(probe_color4));
-    probe5_copy.setPos([x5, y5]);
-    probe5_copy.setSize([width, height]);
-    probe5_copy.setFillColor(new util.Color(probe_color5));
-    probe5_copy.setLineColor(new util.Color(probe_color5));
-    click_copy.setPos(mouse.click_pos);
+    click_copy.setPos();
     // keep track of which components have finished
     feedbackComponents = [];
-    feedbackComponents.push(probe1_copy);
-    feedbackComponents.push(probe2_copy);
-    feedbackComponents.push(probe3_copy);
     feedbackComponents.push(probe4_copy);
-    feedbackComponents.push(probe5_copy);
     feedbackComponents.push(click_copy);
     
     for (const thisComponent of feedbackComponents)
@@ -941,48 +881,6 @@ function feedbackRoutineEachFrame(trials) {
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
     
-    // *probe1_copy* updates
-    if (t >= 0 && probe1_copy.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      probe1_copy.tStart = t;  // (not accounting for frame time here)
-      probe1_copy.frameNStart = frameN;  // exact frame index
-      
-      probe1_copy.setAutoDraw(true);
-    }
-
-    frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe1_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe1_copy.setAutoDraw(false);
-    }
-    
-    // *probe2_copy* updates
-    if (t >= 0 && probe2_copy.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      probe2_copy.tStart = t;  // (not accounting for frame time here)
-      probe2_copy.frameNStart = frameN;  // exact frame index
-      
-      probe2_copy.setAutoDraw(true);
-    }
-
-    frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe2_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe2_copy.setAutoDraw(false);
-    }
-    
-    // *probe3_copy* updates
-    if (t >= 0 && probe3_copy.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      probe3_copy.tStart = t;  // (not accounting for frame time here)
-      probe3_copy.frameNStart = frameN;  // exact frame index
-      
-      probe3_copy.setAutoDraw(true);
-    }
-
-    frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe3_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe3_copy.setAutoDraw(false);
-    }
-    
     // *probe4_copy* updates
     if (t >= 0 && probe4_copy.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -995,20 +893,6 @@ function feedbackRoutineEachFrame(trials) {
     frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (probe4_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       probe4_copy.setAutoDraw(false);
-    }
-    
-    // *probe5_copy* updates
-    if (t >= 0 && probe5_copy.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      probe5_copy.tStart = t;  // (not accounting for frame time here)
-      probe5_copy.frameNStart = frameN;  // exact frame index
-      
-      probe5_copy.setAutoDraw(true);
-    }
-
-    frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe5_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe5_copy.setAutoDraw(false);
     }
     
     // *click_copy* updates
