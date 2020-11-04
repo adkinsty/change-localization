@@ -378,8 +378,8 @@ function arrayRoutineBegin(trials) {
     stim4.setFillColor(new util.Color(stim_color4));
     stim4.setLineColor(new util.Color(stim_color4));
     stim5.setPos([x5, y5]);
-    stim5.setFillColor(new util.Color(stim5_color));
-    stim5.setLineColor(new util.Color(stim5_color));
+    stim5.setFillColor(new util.Color(stim_color5));
+    stim5.setLineColor(new util.Color(stim_color5));
     // keep track of which components have finished
     arrayComponents = [];
     arrayComponents.push(fixA);
