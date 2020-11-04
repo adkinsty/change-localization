@@ -85,11 +85,17 @@ var arrayClock;
 var fixA;
 var stim1;
 var stim2;
+var stim3;
+var stim4;
+var stim5;
 var probeClock;
 var fixB;
 var mouse;
 var probe1;
 var probe2;
+var probe3;
+var probe4;
+var probe5;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -132,7 +138,34 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -1, interpolate: true,
+    opacity: 1, depth: -2, interpolate: true,
+  });
+  
+  stim3 = new visual.Rect ({
+    win: psychoJS.window, name: 'stim3', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -2, interpolate: true,
+  });
+  
+  stim4 = new visual.Rect ({
+    win: psychoJS.window, name: 'stim4', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -2, interpolate: true,
+  });
+  
+  stim5 = new visual.Rect ({
+    win: psychoJS.window, name: 'stim5', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -2, interpolate: true,
   });
   
   // Initialize components for Routine "probe"
@@ -165,7 +198,34 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -1, interpolate: true,
+    opacity: 1, depth: -3, interpolate: true,
+  });
+  
+  probe3 = new visual.Rect ({
+    win: psychoJS.window, name: 'probe3', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -3, interpolate: true,
+  });
+  
+  probe4 = new visual.Rect ({
+    win: psychoJS.window, name: 'probe4', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -3, interpolate: true,
+  });
+  
+  probe5 = new visual.Rect ({
+    win: psychoJS.window, name: 'probe5', 
+    width: [0.1, 0.1][0], height: [0.1, 0.1][1],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color(1.0),
+    fillColor: new util.Color(1.0),
+    opacity: 1, depth: -3, interpolate: true,
   });
   
   // Create some handy timers
@@ -270,9 +330,9 @@ function trialsLoopBegin(thisScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials = new TrialHandler({
     psychoJS: psychoJS,
-    nReps: 1, method: TrialHandler.Method.RANDOM,
+    nReps: 1, method: TrialHandler.Method.SEQUENTIAL,
     extraInfo: expInfo, originPath: undefined,
-    trialList: 'trials.xlsx',
+    trialList: 'trials.csv',
     seed: undefined, name: 'trials'
   });
   psychoJS.experiment.addLoop(trials); // add the loop to the experiment
@@ -312,16 +372,28 @@ function arrayRoutineBegin(trials) {
     routineTimer.add(2.000000);
     // update component parameters for each repeat
     stim1.setPos([x1, y1]);
-    stim1.setFillColor(new util.Color(stim1_color));
-    stim1.setLineColor(new util.Color(stim1_color));
+    stim1.setFillColor(new util.Color(stim_color1));
+    stim1.setLineColor(new util.Color(stim_color1));
     stim2.setPos([x2, y2]);
-    stim2.setFillColor(new util.Color(stim2_color));
-    stim2.setLineColor(new util.Color(stim2_color));
+    stim2.setFillColor(new util.Color(stim_color2));
+    stim2.setLineColor(new util.Color(stim_color2));
+    stim3.setPos([x3, y3]);
+    stim3.setFillColor(new util.Color(stim_color3));
+    stim3.setLineColor(new util.Color(stim_color3));
+    stim4.setPos([x4, y4]);
+    stim4.setFillColor(new util.Color(stim_color4));
+    stim4.setLineColor(new util.Color(stim_color4));
+    stim5.setPos([x5, y5]);
+    stim5.setFillColor(new util.Color(stim5_color));
+    stim5.setLineColor(new util.Color(stim5_color));
     // keep track of which components have finished
     arrayComponents = [];
     arrayComponents.push(fixA);
     arrayComponents.push(stim1);
     arrayComponents.push(stim2);
+    arrayComponents.push(stim3);
+    arrayComponents.push(stim4);
+    arrayComponents.push(stim5);
     
     for (const thisComponent of arrayComponents)
       if ('status' in thisComponent)
@@ -381,6 +453,48 @@ function arrayRoutineEachFrame(trials) {
     frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim2.setAutoDraw(false);
+    }
+    
+    // *stim3* updates
+    if (t >= 1 && stim3.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      stim3.tStart = t;  // (not accounting for frame time here)
+      stim3.frameNStart = frameN;  // exact frame index
+      
+      stim3.setAutoDraw(true);
+    }
+
+    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (stim3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      stim3.setAutoDraw(false);
+    }
+    
+    // *stim4* updates
+    if (t >= 1 && stim4.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      stim4.tStart = t;  // (not accounting for frame time here)
+      stim4.frameNStart = frameN;  // exact frame index
+      
+      stim4.setAutoDraw(true);
+    }
+
+    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (stim4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      stim4.setAutoDraw(false);
+    }
+    
+    // *stim5* updates
+    if (t >= 1 && stim5.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      stim5.tStart = t;  // (not accounting for frame time here)
+      stim5.frameNStart = frameN;  // exact frame index
+      
+      stim5.setAutoDraw(true);
+    }
+
+    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (stim5.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      stim5.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
@@ -444,17 +558,29 @@ function probeRoutineBegin(trials) {
     mouse.clicked_pos = [];
     gotValidClick = false; // until a click is received
     probe1.setPos([x1, y1]);
-    probe1.setFillColor(new util.Color(probe1_color));
-    probe1.setLineColor(new util.Color(probe1_color));
+    probe1.setFillColor(new util.Color(probe_color1));
+    probe1.setLineColor(new util.Color(probe_color1));
     probe2.setPos([x2, y2]);
-    probe2.setFillColor(new util.Color(probe2_color));
-    probe2.setLineColor(new util.Color(probe2_color));
+    probe2.setFillColor(new util.Color(probe_color2));
+    probe2.setLineColor(new util.Color(probe_color2));
+    probe3.setPos([x3, y3]);
+    probe3.setFillColor(new util.Color(probe_color3));
+    probe3.setLineColor(new util.Color(probe_color3));
+    probe4.setPos([x4, y4]);
+    probe4.setFillColor(new util.Color(probe_color4));
+    probe4.setLineColor(new util.Color(probe_color4));
+    probe5.setPos([x5, y5]);
+    probe5.setFillColor(new util.Color(probe_color5));
+    probe5.setLineColor(new util.Color(probe_color5));
     // keep track of which components have finished
     probeComponents = [];
     probeComponents.push(fixB);
     probeComponents.push(mouse);
     probeComponents.push(probe1);
     probeComponents.push(probe2);
+    probeComponents.push(probe3);
+    probeComponents.push(probe4);
+    probeComponents.push(probe5);
     
     for (const thisComponent of probeComponents)
       if ('status' in thisComponent)
@@ -516,7 +642,7 @@ function probeRoutineEachFrame(trials) {
           mouse.time.push(mouse.mouseClock.getTime());
           // check if the mouse was inside our 'clickable' objects
           gotValidClick = false;
-          for (const obj of [probe1,probe2]) {
+          for (const obj of [probe1,probe2,probe3,probe4,probe5]) {
             if (obj.contains(mouse)) {
               gotValidClick = true;
               mouse.clicked_name.push(obj.name)
@@ -556,6 +682,48 @@ function probeRoutineEachFrame(trials) {
     frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (probe2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       probe2.setAutoDraw(false);
+    }
+    
+    // *probe3* updates
+    if (t >= 4 && probe3.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      probe3.tStart = t;  // (not accounting for frame time here)
+      probe3.frameNStart = frameN;  // exact frame index
+      
+      probe3.setAutoDraw(true);
+    }
+
+    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (probe3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      probe3.setAutoDraw(false);
+    }
+    
+    // *probe4* updates
+    if (t >= 4 && probe4.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      probe4.tStart = t;  // (not accounting for frame time here)
+      probe4.frameNStart = frameN;  // exact frame index
+      
+      probe4.setAutoDraw(true);
+    }
+
+    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (probe4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      probe4.setAutoDraw(false);
+    }
+    
+    // *probe5* updates
+    if (t >= 4 && probe5.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      probe5.tStart = t;  // (not accounting for frame time here)
+      probe5.frameNStart = frameN;  // exact frame index
+      
+      probe5.setAutoDraw(true);
+    }
+
+    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (probe5.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      probe5.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
