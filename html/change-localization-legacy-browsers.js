@@ -73,6 +73,7 @@ function updateInfo() {
 
 var instructionsClock;
 var text;
+var intro_mouse;
 var arrayClock;
 var fixA;
 var stim1;
@@ -96,14 +97,18 @@ function experimentInit() {
   text = new visual.TextStim({
     win: psychoJS.window,
     name: 'text',
-    text: 'Welcome.',
+    text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see random set of five colored squares for brief moment then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. \n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.1,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
   
+  intro_mouse = new core.Mouse({
+    win: psychoJS.window,
+  });
+  intro_mouse.mouseClock = new util.Clock();
   // Initialize components for Routine "array"
   arrayClock = new util.Clock();
   fixA = new visual.ShapeStim ({
@@ -230,6 +235,7 @@ function experimentInit() {
 
 var t;
 var frameN;
+var gotValidClick;
 var instructionsComponents;
 function instructionsRoutineBegin(trials) {
   return function () {
@@ -237,11 +243,13 @@ function instructionsRoutineBegin(trials) {
     t = 0;
     instructionsClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(1.000000);
     // update component parameters for each repeat
+    // setup some python lists for storing info about the intro_mouse
+    gotValidClick = false; // until a click is received
     // keep track of which components have finished
     instructionsComponents = [];
     instructionsComponents.push(text);
+    instructionsComponents.push(intro_mouse);
     
     instructionsComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -253,7 +261,7 @@ function instructionsRoutineBegin(trials) {
 }
 
 
-var frameRemains;
+var prevButtonState;
 var continueRoutine;
 function instructionsRoutineEachFrame(trials) {
   return function () {
@@ -273,9 +281,25 @@ function instructionsRoutineEachFrame(trials) {
       text.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 1.0 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (text.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      text.setAutoDraw(false);
+    // *intro_mouse* updates
+    if (t >= 0.0 && intro_mouse.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      intro_mouse.tStart = t;  // (not accounting for frame time here)
+      intro_mouse.frameNStart = frameN;  // exact frame index
+      
+      intro_mouse.status = PsychoJS.Status.STARTED;
+      intro_mouse.mouseClock.reset();
+      prevButtonState = intro_mouse.getPressed();  // if button is down already this ISN'T a new click
+      }
+    if (intro_mouse.status === PsychoJS.Status.STARTED) {  // only update if started and not finished!
+      let buttons = intro_mouse.getPressed();
+      if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
+        prevButtonState = buttons;
+        if (buttons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
+          // abort routine on response
+          continueRoutine = false;
+        }
+      }
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
@@ -295,7 +319,7 @@ function instructionsRoutineEachFrame(trials) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine && routineTimer.getTime() > 0) {
+    if (continueRoutine) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -312,6 +336,10 @@ function instructionsRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     });
+    // store data for thisExp (ExperimentHandler)
+    // the Routine "instructions" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
     return Scheduler.Event.NEXT;
   };
 }
@@ -404,6 +432,7 @@ function arrayRoutineBegin(trials) {
 }
 
 
+var frameRemains;
 function arrayRoutineEachFrame(trials) {
   return function () {
     //------Loop for each frame of Routine 'array'-------
@@ -536,7 +565,6 @@ function arrayRoutineEnd(trials) {
 }
 
 
-var gotValidClick;
 var probeComponents;
 function probeRoutineBegin(trials) {
   return function () {
@@ -597,7 +625,6 @@ function probeRoutineBegin(trials) {
 }
 
 
-var prevButtonState;
 function probeRoutineEachFrame(trials) {
   return function () {
     //------Loop for each frame of Routine 'probe'-------

@@ -21,7 +21,7 @@ for (i in 1:N) {
   switch_i <- sample(x = 1:set_size, size = 1)
   new_color_i <- sample(x = all_colors[!all_colors %in% color_i], size = 1)
 
-  dat_i <- tibble(trial = i, answer = switch_i, height = height, width = width)
+  dat_i <- tibble(trial = i, answer = sprintf("probe%s",switch_i), height = height, width = width)
 
   for (k in 1:set_size) {
 
