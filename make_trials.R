@@ -4,7 +4,7 @@ setwd("/Users/adkinsty/Desktop/change-localization")
 
 # Colors:      Black      Orange     Skyblue   BluGreen    Yellow      Blue    Vermillion  RedPurple
 all_colors <- c("#000000", "#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00", "#cc79a7")
-all_pos <- expand.grid(x=seq(-.5,.5,.25),y=seq(-.5,.5,.25))
+all_pos <- expand.grid(x=seq(-.4,.4,.2),y=seq(-.4,.4,.2))
 
 N <- 5
 set_size <- 5
