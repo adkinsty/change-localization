@@ -887,7 +887,6 @@ function feedbackRoutineBegin(trials) {
     frameN = -1;
     routineTimer.add(0.500000);
     // update component parameters for each repeat
-    click_copy.setPos(mouse.clicked_pos);
     probe1_copy.setPos([x1, y1]);
     probe1_copy.setSize([width, height]);
     probe1_copy.setFillColor(new util.Color(probe_color1));
@@ -947,6 +946,10 @@ function feedbackRoutineEachFrame(trials) {
     frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (click_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       click_copy.setAutoDraw(false);
+    }
+    
+    if (click_copy.status === PsychoJS.Status.STARTED){ // only update if being drawn
+      click_copy.setPos(mouse.clicked_pos);
     }
     
     // *probe1_copy* updates
