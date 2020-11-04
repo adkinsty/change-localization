@@ -90,12 +90,12 @@ var probe3;
 var probe4;
 var probe5;
 var feedbackClock;
+var click_copy;
 var probe1_copy;
 var probe2_copy;
 var probe3_copy;
 var probe4_copy;
 var probe5_copy;
-var click_copy;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -104,7 +104,7 @@ function experimentInit() {
   text = new visual.TextStim({
     win: psychoJS.window,
     name: 'text',
-    text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see random set of five colored squares for brief moment then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. \n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
+    text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see a random set of five colored squares for brief moment then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. \n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
@@ -234,6 +234,15 @@ function experimentInit() {
   
   // Initialize components for Routine "feedback"
   feedbackClock = new util.Clock();
+  click_copy = new visual.ShapeStim ({
+    win: psychoJS.window, name: 'click_copy', 
+    vertices: 'star7', size: [0.05, 0.05],
+    ori: 0, pos: [0, 0],
+    lineWidth: 1, lineColor: new util.Color('white'),
+    fillColor: new util.Color('white'),
+    opacity: 0.9, depth: 0, interpolate: true,
+  });
+  
   probe1_copy = new visual.Rect ({
     win: psychoJS.window, name: 'probe1_copy', 
     width: [1.0, 1.0][0], height: [1.0, 1.0][1],
@@ -277,15 +286,6 @@ function experimentInit() {
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
     opacity: 1, depth: -3, interpolate: true,
-  });
-  
-  click_copy = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'click_copy', 
-    vertices: 'star7', size: [0.05, 0.05],
-    ori: 0, pos: [0, 0],
-    lineWidth: 1, lineColor: new util.Color('white'),
-    fillColor: new util.Color('white'),
-    opacity: 0.9, depth: -5, interpolate: true,
   });
   
   // Create some handy timers
@@ -883,6 +883,7 @@ function feedbackRoutineBegin(trials) {
     frameN = -1;
     routineTimer.add(0.500000);
     // update component parameters for each repeat
+    click_copy.setPos(mouse.clicked_pos);
     probe1_copy.setPos([x1, y1]);
     probe1_copy.setSize([width, height]);
     probe1_copy.setFillColor(new util.Color(probe_color1));
@@ -903,15 +904,14 @@ function feedbackRoutineBegin(trials) {
     probe5_copy.setSize([width, height]);
     probe5_copy.setFillColor(new util.Color(probe_color5));
     probe5_copy.setLineColor(new util.Color(probe_color5));
-    click_copy.setPos(mouse.clicked_pos);
     // keep track of which components have finished
     feedbackComponents = [];
+    feedbackComponents.push(click_copy);
     feedbackComponents.push(probe1_copy);
     feedbackComponents.push(probe2_copy);
     feedbackComponents.push(probe3_copy);
     feedbackComponents.push(probe4_copy);
     feedbackComponents.push(probe5_copy);
-    feedbackComponents.push(click_copy);
     
     feedbackComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -931,6 +931,20 @@ function feedbackRoutineEachFrame(trials) {
     t = feedbackClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
+    
+    // *click_copy* updates
+    if (t >= 0.0 && click_copy.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      click_copy.tStart = t;  // (not accounting for frame time here)
+      click_copy.frameNStart = frameN;  // exact frame index
+      
+      click_copy.setAutoDraw(true);
+    }
+
+    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    if (click_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
+      click_copy.setAutoDraw(false);
+    }
     
     // *probe1_copy* updates
     if (t >= 0 && probe1_copy.status === PsychoJS.Status.NOT_STARTED) {
@@ -1000,20 +1014,6 @@ function feedbackRoutineEachFrame(trials) {
     frameRemains = 0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (probe5_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       probe5_copy.setAutoDraw(false);
-    }
-    
-    // *click_copy* updates
-    if (t >= 0.0 && click_copy.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      click_copy.tStart = t;  // (not accounting for frame time here)
-      click_copy.frameNStart = frameN;  // exact frame index
-      
-      click_copy.setAutoDraw(true);
-    }
-
-    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (click_copy.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      click_copy.setAutoDraw(false);
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
