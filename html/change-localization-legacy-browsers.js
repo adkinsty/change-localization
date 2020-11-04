@@ -242,10 +242,10 @@ function experimentInit() {
   click_copy = new visual.ShapeStim ({
     win: psychoJS.window, name: 'click_copy', 
     vertices: 'star7', size: [0.15, 0.15],
-    ori: 0, pos: undefined,
+    ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color('white'),
     fillColor: new util.Color('white'),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -1, interpolate: true,
   });
   
   // Create some handy timers
@@ -598,7 +598,6 @@ function probeRoutineBegin(trials) {
     t = 0;
     probeClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(8.000000);
     // update component parameters for each repeat
     // setup some python lists for storing info about the mouse
     // current position of the mouse:
@@ -683,10 +682,6 @@ function probeRoutineEachFrame(trials) {
       mouse.mouseClock.reset();
       prevButtonState = mouse.getPressed();  // if button is down already this ISN'T a new click
       }
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (mouse.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      mouse.status = PsychoJS.Status.FINISHED;
-  }
     if (mouse.status === PsychoJS.Status.STARTED) {  // only update if started and not finished!
       let buttons = mouse.getPressed();
       if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
@@ -724,10 +719,6 @@ function probeRoutineEachFrame(trials) {
       probe1.setAutoDraw(true);
     }
 
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe1.setAutoDraw(false);
-    }
     
     // *probe2* updates
     if (t >= 4 && probe2.status === PsychoJS.Status.NOT_STARTED) {
@@ -738,10 +729,6 @@ function probeRoutineEachFrame(trials) {
       probe2.setAutoDraw(true);
     }
 
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe2.setAutoDraw(false);
-    }
     
     // *probe3* updates
     if (t >= 4 && probe3.status === PsychoJS.Status.NOT_STARTED) {
@@ -752,10 +739,6 @@ function probeRoutineEachFrame(trials) {
       probe3.setAutoDraw(true);
     }
 
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe3.setAutoDraw(false);
-    }
     
     // *probe4* updates
     if (t >= 4 && probe4.status === PsychoJS.Status.NOT_STARTED) {
@@ -766,10 +749,6 @@ function probeRoutineEachFrame(trials) {
       probe4.setAutoDraw(true);
     }
 
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe4.setAutoDraw(false);
-    }
     
     // *probe5* updates
     if (t >= 4 && probe5.status === PsychoJS.Status.NOT_STARTED) {
@@ -780,10 +759,6 @@ function probeRoutineEachFrame(trials) {
       probe5.setAutoDraw(true);
     }
 
-    frameRemains = 4 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (probe5.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      probe5.setAutoDraw(false);
-    }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -802,7 +777,7 @@ function probeRoutineEachFrame(trials) {
     });
     
     // refresh the screen if continuing
-    if (continueRoutine && routineTimer.getTime() > 0) {
+    if (continueRoutine) {
       return Scheduler.Event.FLIP_REPEAT;
     } else {
       return Scheduler.Event.NEXT;
@@ -811,6 +786,7 @@ function probeRoutineEachFrame(trials) {
 }
 
 
+var click_pos;
 function probeRoutineEnd(trials) {
   return function () {
     //------Ending Routine 'probe'-------
@@ -829,6 +805,10 @@ function probeRoutineEnd(trials) {
     if (mouse.clicked_name) {  psychoJS.experiment.addData('mouse.clicked_name', mouse.clicked_name[0])};
     if (mouse.clicked_pos) {  psychoJS.experiment.addData('mouse.clicked_pos', mouse.clicked_pos[0])};
     
+    click_pos = mouse.getPos()
+    // the Routine "probe" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
     return Scheduler.Event.NEXT;
   };
 }
@@ -843,17 +823,11 @@ function feedbackRoutineBegin(trials) {
     frameN = -1;
     routineTimer.add(0.500000);
     // update component parameters for each repeat
-    if (mouse.clicked_pos === undefined) {
-        click_copy.setPos(0,0)
-    } else {
-        click_copy.setPos(mouse.clicked_pos)
-    }
-    
     probe4_copy.setPos([x4, y4]);
     probe4_copy.setSize([width, height]);
     probe4_copy.setFillColor(new util.Color(probe_color4));
     probe4_copy.setLineColor(new util.Color(probe_color4));
-    click_copy.setPos();
+    click_copy.setPos(click_pos);
     // keep track of which components have finished
     feedbackComponents = [];
     feedbackComponents.push(probe4_copy);
