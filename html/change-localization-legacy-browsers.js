@@ -107,7 +107,7 @@ function experimentInit() {
     text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see random set of five colored squares for brief moment then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. \n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
-    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
+    pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
