@@ -40,4 +40,4 @@ for (i in 1:N) {
 
 write_csv(dat,"trials.csv")
 
-print(dat)
+dat
