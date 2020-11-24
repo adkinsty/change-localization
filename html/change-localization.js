@@ -463,7 +463,7 @@ function arrayRoutineBegin(trials) {
     t = 0;
     arrayClock.reset(); // clock
     frameN = -1;
-    routineTimer.add(2.000000);
+    routineTimer.add(1.000000);
     // update component parameters for each repeat
     stim1.setPos([x1, y1]);
     stim1.setSize([width, height]);
@@ -522,13 +522,13 @@ function arrayRoutineEachFrame(trials) {
       fixA.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (fixA.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       fixA.setAutoDraw(false);
     }
     
     // *stim1* updates
-    if (t >= 1 && stim1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.5 && stim1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim1.tStart = t;  // (not accounting for frame time here)
       stim1.frameNStart = frameN;  // exact frame index
@@ -536,13 +536,13 @@ function arrayRoutineEachFrame(trials) {
       stim1.setAutoDraw(true);
     }
 
-    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim1.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim1.setAutoDraw(false);
     }
     
     // *stim2* updates
-    if (t >= 1 && stim2.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.5 && stim2.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim2.tStart = t;  // (not accounting for frame time here)
       stim2.frameNStart = frameN;  // exact frame index
@@ -550,13 +550,13 @@ function arrayRoutineEachFrame(trials) {
       stim2.setAutoDraw(true);
     }
 
-    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim2.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim2.setAutoDraw(false);
     }
     
     // *stim3* updates
-    if (t >= 1 && stim3.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.5 && stim3.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim3.tStart = t;  // (not accounting for frame time here)
       stim3.frameNStart = frameN;  // exact frame index
@@ -564,13 +564,13 @@ function arrayRoutineEachFrame(trials) {
       stim3.setAutoDraw(true);
     }
 
-    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim3.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim3.setAutoDraw(false);
     }
     
     // *stim4* updates
-    if (t >= 1 && stim4.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.5 && stim4.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim4.tStart = t;  // (not accounting for frame time here)
       stim4.frameNStart = frameN;  // exact frame index
@@ -578,13 +578,13 @@ function arrayRoutineEachFrame(trials) {
       stim4.setAutoDraw(true);
     }
 
-    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim4.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim4.setAutoDraw(false);
     }
     
     // *stim5* updates
-    if (t >= 1 && stim5.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 0.5 && stim5.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       stim5.tStart = t;  // (not accounting for frame time here)
       stim5.frameNStart = frameN;  // exact frame index
@@ -592,7 +592,7 @@ function arrayRoutineEachFrame(trials) {
       stim5.setAutoDraw(true);
     }
 
-    frameRemains = 1 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.5 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (stim5.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       stim5.setAutoDraw(false);
     }
