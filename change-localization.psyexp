@@ -52,7 +52,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="You are about to begin a visual memory task.&amp;#10;&amp;#10;In each trial, you will see a random set of five colored squares for a brief moment; then the squares will dissapear. &amp;#10;&amp;#10;After a short delay, the squares will reappear, but one of the squares will have a different color than before.&amp;#10;&amp;#10;Please use your mouse to click on the square that changed color. The squares will remain on the screen until you click a square.&amp;#10;&amp;#10;Please try to look at the center of the screen throughout the experiment. &amp;#10;&amp;#10;Good luck!&amp;#10;&amp;#10;Click anywhere on the screen when you are ready to begin." valType="str"/>
+        <Param name="text" updates="constant" val="You are about to begin a visual memory task.&amp;#10;&amp;#10;In each trial, you will see a random set of five colored squares; then the squares will disappear. &amp;#10;&amp;#10;After a short delay, the squares will reappear, but one of the squares will have a different color than before.&amp;#10;&amp;#10;Please use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.&amp;#10;&amp;#10;Please try to look at the center of the screen throughout the experiment. &amp;#10;&amp;#10;Good luck!&amp;#10;&amp;#10;Click anywhere on the screen when you are ready to begin.&amp;#10;" valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -250,14 +250,14 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="1" valType="code"/>
+        <Param name="stopVal" updates="constant" val=".5" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </PolygonComponent>
       <MouseComponent name="mouse">
         <Param name="clickable" updates="constant" val="probe1,probe2,probe3,probe4,probe5" valType="code"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="forceEndRoutineOnPress" updates="constant" val="valid click" valType="str"/>
         <Param name="name" updates="None" val="mouse" valType="code"/>
         <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
@@ -266,7 +266,7 @@
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -274,7 +274,7 @@
       </MouseComponent>
       <PolygonComponent name="probe1">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color1" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
@@ -291,7 +291,7 @@
         <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -299,7 +299,7 @@
       </PolygonComponent>
       <PolygonComponent name="probe2">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color2" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
@@ -316,7 +316,7 @@
         <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -324,7 +324,7 @@
       </PolygonComponent>
       <PolygonComponent name="probe3">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color3" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
@@ -341,7 +341,7 @@
         <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -349,7 +349,7 @@
       </PolygonComponent>
       <PolygonComponent name="probe4">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color4" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
@@ -366,7 +366,7 @@
         <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -374,7 +374,7 @@
       </PolygonComponent>
       <PolygonComponent name="probe5">
         <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="4" valType="code"/>
+        <Param name="durationEstim" updates="None" val="2" valType="code"/>
         <Param name="fillColor" updates="set every repeat" val="$probe_color5" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="interpolate" updates="constant" val="linear" valType="str"/>
@@ -391,7 +391,7 @@
         <Param name="size" updates="set every repeat" val="[width,height]" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1" valType="code"/>
+        <Param name="startVal" updates="None" val=".5" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
@@ -402,7 +402,7 @@
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="JS" valType="str"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
