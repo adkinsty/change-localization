@@ -112,7 +112,7 @@ function experimentInit() {
   text = new visual.TextStim({
     win: psychoJS.window,
     name: 'text',
-    text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see a random set of five colored squares for brief moment then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. \n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
+    text: 'You are about to begin a visual memory task.\n\nIn each trial, you will see a random set of five colored squares for a brief moment; then the squares will dissapear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. The squares will remain on the screen until you click a square.\n\nPlease try to look at the center of the screen throughout the experiment. \n\nGood luck!\n\nClick anywhere on the screen when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
@@ -159,7 +159,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -3, interpolate: true,
   });
   
   stim4 = new visual.Rect ({
@@ -168,7 +168,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -4, interpolate: true,
   });
   
   stim5 = new visual.Rect ({
@@ -177,7 +177,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -5, interpolate: true,
   });
   
   // Initialize components for Routine "probe"
@@ -219,7 +219,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -4, interpolate: true,
   });
   
   probe4 = new visual.Rect ({
@@ -228,7 +228,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -5, interpolate: true,
   });
   
   probe5 = new visual.Rect ({
@@ -237,7 +237,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -6, interpolate: true,
   });
   
   // Initialize components for Routine "feedback"
@@ -248,7 +248,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: 0, interpolate: true,
   });
   
   probe2_copy = new visual.Rect ({
@@ -257,7 +257,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -1, interpolate: true,
   });
   
   probe3_copy = new visual.Rect ({
@@ -266,7 +266,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -2, interpolate: true,
   });
   
   probe4_copy = new visual.Rect ({
@@ -284,7 +284,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -4, interpolate: true,
   });
   
   click_copy = new visual.ShapeStim ({
@@ -712,12 +712,12 @@ function probeRoutineEachFrame(trials) {
       fixB.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 4 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       fixB.setAutoDraw(false);
     }
     // *mouse* updates
-    if (t >= 4 && mouse.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       mouse.tStart = t;  // (not accounting for frame time here)
       mouse.frameNStart = frameN;  // exact frame index
@@ -755,7 +755,7 @@ function probeRoutineEachFrame(trials) {
     }
     
     // *probe1* updates
-    if (t >= 4 && probe1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe1.tStart = t;  // (not accounting for frame time here)
       probe1.frameNStart = frameN;  // exact frame index
@@ -765,7 +765,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe2* updates
-    if (t >= 4 && probe2.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe2.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe2.tStart = t;  // (not accounting for frame time here)
       probe2.frameNStart = frameN;  // exact frame index
@@ -775,7 +775,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe3* updates
-    if (t >= 4 && probe3.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe3.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe3.tStart = t;  // (not accounting for frame time here)
       probe3.frameNStart = frameN;  // exact frame index
@@ -785,7 +785,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe4* updates
-    if (t >= 4 && probe4.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe4.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe4.tStart = t;  // (not accounting for frame time here)
       probe4.frameNStart = frameN;  // exact frame index
@@ -795,7 +795,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe5* updates
-    if (t >= 4 && probe5.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe5.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe5.tStart = t;  // (not accounting for frame time here)
       probe5.frameNStart = frameN;  // exact frame index
