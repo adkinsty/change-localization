@@ -708,12 +708,12 @@ function probeRoutineEachFrame(trials) {
       fixB.setAutoDraw(true);
     }
 
-    frameRemains = 0.0 + 0.5 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
+    frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
     if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
       fixB.setAutoDraw(false);
     }
     // *mouse* updates
-    if (t >= 0.5 && mouse.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       mouse.tStart = t;  // (not accounting for frame time here)
       mouse.frameNStart = frameN;  // exact frame index
@@ -751,7 +751,7 @@ function probeRoutineEachFrame(trials) {
     }
     
     // *probe1* updates
-    if (t >= 0.5 && probe1.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe1.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe1.tStart = t;  // (not accounting for frame time here)
       probe1.frameNStart = frameN;  // exact frame index
@@ -761,7 +761,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe2* updates
-    if (t >= 0.5 && probe2.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe2.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe2.tStart = t;  // (not accounting for frame time here)
       probe2.frameNStart = frameN;  // exact frame index
@@ -771,7 +771,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe3* updates
-    if (t >= 0.5 && probe3.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe3.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe3.tStart = t;  // (not accounting for frame time here)
       probe3.frameNStart = frameN;  // exact frame index
@@ -781,7 +781,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe4* updates
-    if (t >= 0.5 && probe4.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe4.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe4.tStart = t;  // (not accounting for frame time here)
       probe4.frameNStart = frameN;  // exact frame index
@@ -791,7 +791,7 @@ function probeRoutineEachFrame(trials) {
 
     
     // *probe5* updates
-    if (t >= 0.5 && probe5.status === PsychoJS.Status.NOT_STARTED) {
+    if (t >= 1 && probe5.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
       probe5.tStart = t;  // (not accounting for frame time here)
       probe5.frameNStart = frameN;  // exact frame index
