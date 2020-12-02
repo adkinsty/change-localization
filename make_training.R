@@ -8,8 +8,8 @@ K <- 5
 height <- .05
 width <- .05
 
-# Colors:        Black      Orange     Skyblue   BluGreen    Yellow      Blue    Vermillion  RedPurple
-all_colors <- c("#000000", "#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00", "#cc79a7")
+# Colors:        Dark Grey      Orange     Skyblue   BluGreen    Yellow      Blue    Vermillion  RedPurple
+all_colors <- c("#4A4A4A", "#e69f00", "#56b4e9", "#009e73", "#f0e442", "#0072b2", "#d55e00", "#cc79a7")
 white <- "#FFFFFF"
 all_pos <- expand.grid(x = seq(-.2,.2,.1), y = seq(-.2,.2,.1))[-13,]
 

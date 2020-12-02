@@ -80,7 +80,7 @@ function updateInfo() {
 
 var instructionsClock;
 var text;
-var intro_mouse;
+var key_resp;
 var arrayClock;
 var fixA;
 var stim1;
@@ -89,7 +89,6 @@ var stim3;
 var stim4;
 var stim5;
 var probeClock;
-var fixB;
 var mouse;
 var probe1;
 var probe2;
@@ -105,7 +104,7 @@ var probe5_train;
 var click_train;
 var restClock;
 var rest_text;
-var rest_mouse;
+var key_resp_2;
 var feedbackClock;
 var probe1_copy;
 var probe2_copy;
@@ -121,7 +120,7 @@ function experimentInit() {
   text = new visual.TextStim({
     win: psychoJS.window,
     name: 'text',
-    text: 'You are about to begin a game used to study memory.\n\nIn each trial, you will see a random set of five colored squares for a brief moment; then the squares will disappear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.\n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nFirst you will do some practice trials. At the end of each practice trial, the correct square will be colored white. \n\nPlease click anywhere when you are ready to begin.',
+    text: 'You are about to begin a game used to study memory.\n\nIn each trial, you will see a random set of five colored squares for a brief moment; then the squares will disappear. \n\nAfter a short delay, the squares will reappear, but one of the squares will have a different color than before.\n\nPlease use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.\n\nAlso, please try to look at the center of the screen throughout the experiment. \n\nFirst you will do some practice trials. At the end of each practice trial, the correct square will be colored white. \n\nPress c when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
@@ -129,10 +128,8 @@ function experimentInit() {
     depth: 0.0 
   });
   
-  intro_mouse = new core.Mouse({
-    win: psychoJS.window,
-  });
-  intro_mouse.mouseClock = new util.Clock();
+  key_resp = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
+  
   // Initialize components for Routine "array"
   arrayClock = new util.Clock();
   fixA = new visual.ShapeStim ({
@@ -191,15 +188,6 @@ function experimentInit() {
   
   // Initialize components for Routine "probe"
   probeClock = new util.Clock();
-  fixB = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'fixB', 
-    vertices: 'cross', size:[0.05, 0.05],
-    ori: 0, pos: [0, 0],
-    lineWidth: 0.5, lineColor: new util.Color([1, 1, 1]),
-    fillColor: new util.Color([1, 1, 1]),
-    opacity: 1, depth: 0, interpolate: true,
-  });
-  
   mouse = new core.Mouse({
     win: psychoJS.window,
   });
@@ -210,7 +198,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -1, interpolate: true,
   });
   
   probe2 = new visual.Rect ({
@@ -219,7 +207,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -2, interpolate: true,
   });
   
   probe3 = new visual.Rect ({
@@ -228,7 +216,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -4, interpolate: true,
+    opacity: 1, depth: -3, interpolate: true,
   });
   
   probe4 = new visual.Rect ({
@@ -237,7 +225,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -5, interpolate: true,
+    opacity: 1, depth: -4, interpolate: true,
   });
   
   probe5 = new visual.Rect ({
@@ -246,7 +234,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -6, interpolate: true,
+    opacity: 1, depth: -5, interpolate: true,
   });
   
   // Initialize components for Routine "train_feedback"
@@ -310,7 +298,7 @@ function experimentInit() {
   rest_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'rest_text',
-    text: 'Ok, next you will begin the actual task. \n\nRemember to look at the center of the screen throughout. \n\nAnd of course, please try your best!\n\nClick anywhere on the screen when you are ready to begin.',
+    text: 'Ok, next you will begin the actual task. \n\nRemember to look at the center of the screen throughout. \n\nAnd of course, please try your best!\n\nPress c when you are ready to begin.',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.025,  wrapWidth: undefined, ori: 0,
@@ -318,10 +306,8 @@ function experimentInit() {
     depth: 0.0 
   });
   
-  rest_mouse = new core.Mouse({
-    win: psychoJS.window,
-  });
-  rest_mouse.mouseClock = new util.Clock();
+  key_resp_2 = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
+  
   // Initialize components for Routine "array"
   arrayClock = new util.Clock();
   fixA = new visual.ShapeStim ({
@@ -380,15 +366,6 @@ function experimentInit() {
   
   // Initialize components for Routine "probe"
   probeClock = new util.Clock();
-  fixB = new visual.ShapeStim ({
-    win: psychoJS.window, name: 'fixB', 
-    vertices: 'cross', size:[0.05, 0.05],
-    ori: 0, pos: [0, 0],
-    lineWidth: 0.5, lineColor: new util.Color([1, 1, 1]),
-    fillColor: new util.Color([1, 1, 1]),
-    opacity: 1, depth: 0, interpolate: true,
-  });
-  
   mouse = new core.Mouse({
     win: psychoJS.window,
   });
@@ -399,7 +376,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -2, interpolate: true,
+    opacity: 1, depth: -1, interpolate: true,
   });
   
   probe2 = new visual.Rect ({
@@ -408,7 +385,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -3, interpolate: true,
+    opacity: 1, depth: -2, interpolate: true,
   });
   
   probe3 = new visual.Rect ({
@@ -417,7 +394,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -4, interpolate: true,
+    opacity: 1, depth: -3, interpolate: true,
   });
   
   probe4 = new visual.Rect ({
@@ -426,7 +403,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -5, interpolate: true,
+    opacity: 1, depth: -4, interpolate: true,
   });
   
   probe5 = new visual.Rect ({
@@ -435,7 +412,7 @@ function experimentInit() {
     ori: 0, pos: [0, 0],
     lineWidth: 1, lineColor: new util.Color(1.0),
     fillColor: new util.Color(1.0),
-    opacity: 1, depth: -6, interpolate: true,
+    opacity: 1, depth: -5, interpolate: true,
   });
   
   // Initialize components for Routine "feedback"
@@ -504,7 +481,7 @@ function experimentInit() {
 
 var t;
 var frameN;
-var gotValidClick;
+var _key_resp_allKeys;
 var instructionsComponents;
 function instructionsRoutineBegin(trials) {
   return function () {
@@ -513,12 +490,13 @@ function instructionsRoutineBegin(trials) {
     instructionsClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    // setup some python lists for storing info about the intro_mouse
-    gotValidClick = false; // until a click is received
+    key_resp.keys = undefined;
+    key_resp.rt = undefined;
+    _key_resp_allKeys = [];
     // keep track of which components have finished
     instructionsComponents = [];
     instructionsComponents.push(text);
-    instructionsComponents.push(intro_mouse);
+    instructionsComponents.push(key_resp);
     
     instructionsComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -530,7 +508,6 @@ function instructionsRoutineBegin(trials) {
 }
 
 
-var prevButtonState;
 var continueRoutine;
 function instructionsRoutineEachFrame(trials) {
   return function () {
@@ -550,26 +527,30 @@ function instructionsRoutineEachFrame(trials) {
       text.setAutoDraw(true);
     }
 
-    // *intro_mouse* updates
-    if (t >= 0.0 && intro_mouse.status === PsychoJS.Status.NOT_STARTED) {
+    
+    // *key_resp* updates
+    if (t >= 0.0 && key_resp.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      intro_mouse.tStart = t;  // (not accounting for frame time here)
-      intro_mouse.frameNStart = frameN;  // exact frame index
+      key_resp.tStart = t;  // (not accounting for frame time here)
+      key_resp.frameNStart = frameN;  // exact frame index
       
-      intro_mouse.status = PsychoJS.Status.STARTED;
-      intro_mouse.mouseClock.reset();
-      prevButtonState = intro_mouse.getPressed();  // if button is down already this ISN'T a new click
-      }
-    if (intro_mouse.status === PsychoJS.Status.STARTED) {  // only update if started and not finished!
-      let buttons = intro_mouse.getPressed();
-      if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
-        prevButtonState = buttons;
-        if (buttons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
-          // abort routine on response
-          continueRoutine = false;
-        }
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { key_resp.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { key_resp.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { key_resp.clearEvents(); });
+    }
+
+    if (key_resp.status === PsychoJS.Status.STARTED) {
+      let theseKeys = key_resp.getKeys({keyList: ['c'], waitRelease: false});
+      _key_resp_allKeys = _key_resp_allKeys.concat(theseKeys);
+      if (_key_resp_allKeys.length > 0) {
+        key_resp.keys = _key_resp_allKeys[_key_resp_allKeys.length - 1].name;  // just the last key pressed
+        key_resp.rt = _key_resp_allKeys[_key_resp_allKeys.length - 1].rt;
+        // a response ends the routine
+        continueRoutine = false;
       }
     }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -605,7 +586,13 @@ function instructionsRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     });
-    // store data for thisExp (ExperimentHandler)
+    psychoJS.experiment.addData('key_resp.keys', key_resp.keys);
+    if (typeof key_resp.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('key_resp.rt', key_resp.rt);
+        routineTimer.reset();
+        }
+    
+    key_resp.stop();
     // the Routine "instructions" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -878,6 +865,7 @@ function arrayRoutineEnd(trials) {
 }
 
 
+var gotValidClick;
 var probeComponents;
 function probeRoutineBegin(trials) {
   return function () {
@@ -919,7 +907,6 @@ function probeRoutineBegin(trials) {
     probe5.setLineColor(new util.Color(probe_color5));
     // keep track of which components have finished
     probeComponents = [];
-    probeComponents.push(fixB);
     probeComponents.push(mouse);
     probeComponents.push(probe1);
     probeComponents.push(probe2);
@@ -937,6 +924,7 @@ function probeRoutineBegin(trials) {
 }
 
 
+var prevButtonState;
 function probeRoutineEachFrame(trials) {
   return function () {
     //------Loop for each frame of Routine 'probe'-------
@@ -945,20 +933,6 @@ function probeRoutineEachFrame(trials) {
     t = probeClock.getTime();
     frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
     // update/draw components on each frame
-    
-    // *fixB* updates
-    if (t >= 0.0 && fixB.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
-      fixB.tStart = t;  // (not accounting for frame time here)
-      fixB.frameNStart = frameN;  // exact frame index
-      
-      fixB.setAutoDraw(true);
-    }
-
-    frameRemains = 0.0 + 1 - psychoJS.window.monitorFramePeriod * 0.75;  // most of one frame period left
-    if (fixB.status === PsychoJS.Status.STARTED && t >= frameRemains) {
-      fixB.setAutoDraw(false);
-    }
     // *mouse* updates
     if (t >= 1 && mouse.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
@@ -1282,6 +1256,7 @@ function train_feedbackRoutineEnd(trials) {
 }
 
 
+var _key_resp_2_allKeys;
 var restComponents;
 function restRoutineBegin(trials) {
   return function () {
@@ -1290,12 +1265,13 @@ function restRoutineBegin(trials) {
     restClock.reset(); // clock
     frameN = -1;
     // update component parameters for each repeat
-    // setup some python lists for storing info about the rest_mouse
-    gotValidClick = false; // until a click is received
+    key_resp_2.keys = undefined;
+    key_resp_2.rt = undefined;
+    _key_resp_2_allKeys = [];
     // keep track of which components have finished
     restComponents = [];
     restComponents.push(rest_text);
-    restComponents.push(rest_mouse);
+    restComponents.push(key_resp_2);
     
     restComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -1325,26 +1301,30 @@ function restRoutineEachFrame(trials) {
       rest_text.setAutoDraw(true);
     }
 
-    // *rest_mouse* updates
-    if (t >= 0.0 && rest_mouse.status === PsychoJS.Status.NOT_STARTED) {
+    
+    // *key_resp_2* updates
+    if (t >= 0.0 && key_resp_2.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      rest_mouse.tStart = t;  // (not accounting for frame time here)
-      rest_mouse.frameNStart = frameN;  // exact frame index
+      key_resp_2.tStart = t;  // (not accounting for frame time here)
+      key_resp_2.frameNStart = frameN;  // exact frame index
       
-      rest_mouse.status = PsychoJS.Status.STARTED;
-      rest_mouse.mouseClock.reset();
-      prevButtonState = rest_mouse.getPressed();  // if button is down already this ISN'T a new click
-      }
-    if (rest_mouse.status === PsychoJS.Status.STARTED) {  // only update if started and not finished!
-      let buttons = rest_mouse.getPressed();
-      if (!buttons.every( (e,i,) => (e == prevButtonState[i]) )) { // button state changed?
-        prevButtonState = buttons;
-        if (buttons.reduce( (e, acc) => (e+acc) ) > 0) { // state changed to a new click
-          // abort routine on response
-          continueRoutine = false;
-        }
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { key_resp_2.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { key_resp_2.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { key_resp_2.clearEvents(); });
+    }
+
+    if (key_resp_2.status === PsychoJS.Status.STARTED) {
+      let theseKeys = key_resp_2.getKeys({keyList: ['c'], waitRelease: false});
+      _key_resp_2_allKeys = _key_resp_2_allKeys.concat(theseKeys);
+      if (_key_resp_2_allKeys.length > 0) {
+        key_resp_2.keys = _key_resp_2_allKeys[_key_resp_2_allKeys.length - 1].name;  // just the last key pressed
+        key_resp_2.rt = _key_resp_2_allKeys[_key_resp_2_allKeys.length - 1].rt;
+        // a response ends the routine
+        continueRoutine = false;
       }
     }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1380,7 +1360,13 @@ function restRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     });
-    // store data for thisExp (ExperimentHandler)
+    psychoJS.experiment.addData('key_resp_2.keys', key_resp_2.keys);
+    if (typeof key_resp_2.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('key_resp_2.rt', key_resp_2.rt);
+        routineTimer.reset();
+        }
+    
+    key_resp_2.stop();
     // the Routine "rest" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     

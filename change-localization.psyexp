@@ -52,28 +52,28 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="You are about to begin a game used to study memory.&amp;#10;&amp;#10;In each trial, you will see a random set of five colored squares for a brief moment; then the squares will disappear. &amp;#10;&amp;#10;After a short delay, the squares will reappear, but one of the squares will have a different color than before.&amp;#10;&amp;#10;Please use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.&amp;#10;&amp;#10;Also, please try to look at the center of the screen throughout the experiment. &amp;#10;&amp;#10;First you will do some practice trials. At the end of each practice trial, the correct square will be colored white. &amp;#10;&amp;#10;Please click anywhere when you are ready to begin." valType="str"/>
+        <Param name="text" updates="constant" val="You are about to begin a game used to study memory.&amp;#10;&amp;#10;In each trial, you will see a random set of five colored squares for a brief moment; then the squares will disappear. &amp;#10;&amp;#10;After a short delay, the squares will reappear, but one of the squares will have a different color than before.&amp;#10;&amp;#10;Please use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.&amp;#10;&amp;#10;Also, please try to look at the center of the screen throughout the experiment. &amp;#10;&amp;#10;First you will do some practice trials. At the end of each practice trial, the correct square will be colored white. &amp;#10;&amp;#10;Press c when you are ready to begin." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
-      <MouseComponent name="intro_mouse">
-        <Param name="clickable" updates="constant" val="" valType="code"/>
+      <KeyboardComponent name="key_resp">
+        <Param name="allowedKeys" updates="constant" val="'c'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="10" valType="code"/>
-        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
-        <Param name="name" updates="None" val="intro_mouse" valType="code"/>
-        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
-        <Param name="saveMouseState" updates="None" val="never" valType="str"/>
-        <Param name="saveParamsClickable" updates="constant" val="" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="False" valType="bool"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
-        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
-      </MouseComponent>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
     <Routine name="practice"/>
     <Routine name="array">
@@ -230,7 +230,7 @@
     </Routine>
     <Routine name="probe">
       <PolygonComponent name="fixB">
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="disabled" updates="None" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="fillColor" updates="constant" val="$[1,1,1]" valType="str"/>
         <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
@@ -739,28 +739,28 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="You are about to begin a game used to study memory.&amp;#10;&amp;#10;In each trial, you will see a random set of five colored squares for a brief moment; then the squares will disappear. &amp;#10;&amp;#10;After a short delay, the squares will reappear, but one of the squares will have a different color than before.&amp;#10;&amp;#10;Please use your mouse to click on the square that changed color. The squares will remain on the screen until you click on a square.&amp;#10;&amp;#10;Also, please try to look at the center of the screen throughout the experiment. &amp;#10;&amp;#10;First you will do some practice trials. At the end of each practice trial, the correct square will be colored white. &amp;#10;&amp;#10;Please click anywhere when you are ready to begin." valType="str"/>
+        <Param name="text" updates="constant" val="Ok, next you will begin the actual task. &amp;#10;&amp;#10;Remember to look at the center of the screen throughout. &amp;#10;&amp;#10;And of course, please try your best!&amp;#10;&amp;#10;Press c when you are ready to begin." valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
-      <MouseComponent name="rest_mouse">
-        <Param name="clickable" updates="constant" val="" valType="code"/>
+      <KeyboardComponent name="key_resp_2">
+        <Param name="allowedKeys" updates="constant" val="'c'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="durationEstim" updates="None" val="10" valType="code"/>
-        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
-        <Param name="name" updates="None" val="rest_mouse" valType="code"/>
-        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
-        <Param name="saveMouseState" updates="None" val="never" valType="str"/>
-        <Param name="saveParamsClickable" updates="constant" val="" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="False" valType="bool"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_2" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
-        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
-      </MouseComponent>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
   </Routines>
   <Flow>
