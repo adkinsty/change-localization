@@ -119,6 +119,7 @@ var completionClock;
 var completion_text;
 var code;
 var completion_msg;
+var completion_keys;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -491,8 +492,10 @@ function experimentInit() {
     depth: 0.0 
   });
   
-  code = Math.random() * 1000;
-  completion_msg = "Your completion code is:\n" + code.toString() + "\nPlease write down this code and then press c to exit this study."
+  code = Math.round(Math.random() * 10000);
+  completion_msg = "Your completion code is:\n\n" + code.toString() + "\n\nPlease write down this code and then press c to exit this study."
+  completion_keys = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
+  
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
@@ -1578,6 +1581,7 @@ function feedbackRoutineEnd(trials) {
 }
 
 
+var _completion_keys_allKeys;
 var completionComponents;
 function completionRoutineBegin(trials) {
   return function () {
@@ -1587,9 +1591,13 @@ function completionRoutineBegin(trials) {
     frameN = -1;
     // update component parameters for each repeat
     completion_text.setText(completion_msg);
+    completion_keys.keys = undefined;
+    completion_keys.rt = undefined;
+    _completion_keys_allKeys = [];
     // keep track of which components have finished
     completionComponents = [];
     completionComponents.push(completion_text);
+    completionComponents.push(completion_keys);
     
     completionComponents.forEach( function(thisComponent) {
       if ('status' in thisComponent)
@@ -1619,6 +1627,30 @@ function completionRoutineEachFrame(trials) {
       completion_text.setAutoDraw(true);
     }
 
+    
+    // *completion_keys* updates
+    if (t >= 0.0 && completion_keys.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      completion_keys.tStart = t;  // (not accounting for frame time here)
+      completion_keys.frameNStart = frameN;  // exact frame index
+      
+      // keyboard checking is just starting
+      psychoJS.window.callOnFlip(function() { completion_keys.clock.reset(); });  // t=0 on next screen flip
+      psychoJS.window.callOnFlip(function() { completion_keys.start(); }); // start on screen flip
+      psychoJS.window.callOnFlip(function() { completion_keys.clearEvents(); });
+    }
+
+    if (completion_keys.status === PsychoJS.Status.STARTED) {
+      let theseKeys = completion_keys.getKeys({keyList: ['c'], waitRelease: false});
+      _completion_keys_allKeys = _completion_keys_allKeys.concat(theseKeys);
+      if (_completion_keys_allKeys.length > 0) {
+        completion_keys.keys = _completion_keys_allKeys[_completion_keys_allKeys.length - 1].name;  // just the last key pressed
+        completion_keys.rt = _completion_keys_allKeys[_completion_keys_allKeys.length - 1].rt;
+        // a response ends the routine
+        continueRoutine = false;
+      }
+    }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -1654,6 +1686,13 @@ function completionRoutineEnd(trials) {
         thisComponent.setAutoDraw(false);
       }
     });
+    psychoJS.experiment.addData('completion_keys.keys', completion_keys.keys);
+    if (typeof completion_keys.keys !== 'undefined') {  // we had a response
+        psychoJS.experiment.addData('completion_keys.rt', completion_keys.rt);
+        routineTimer.reset();
+        }
+    
+    completion_keys.stop();
     // the Routine "completion" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     

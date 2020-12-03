@@ -789,7 +789,7 @@
       </TextComponent>
       <CodeComponent name="code_code">
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="code = Math.random() * 1000;&amp;#10;completion_msg = &quot;Your completion code is:\n&quot; + code.toString() + &quot;\nPlease write down this code and then press c to exit this study.&quot;" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="code = Math.round(Math.random() * 10000);&amp;#10;completion_msg = &quot;Your completion code is:\n\n&quot; + code.toString() + &quot;\n\nPlease write down this code and then press c to exit this study.&quot;" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
@@ -802,6 +802,24 @@
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code_code" valType="code"/>
       </CodeComponent>
+      <KeyboardComponent name="completion_keys">
+        <Param name="allowedKeys" updates="constant" val="'c'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="completion_keys" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
   </Routines>
   <Flow>

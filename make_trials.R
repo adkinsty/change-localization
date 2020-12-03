@@ -2,7 +2,7 @@ library(tidyverse)
 
 setwd("/Users/adkinsty/Desktop/change-localization")
 
-N <- 50
+N <- 5#50
 K <- 5
 
 height <- .05
