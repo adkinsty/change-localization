@@ -46,6 +46,9 @@ const trialsLoopScheduler = new Scheduler(psychoJS);
 flowScheduler.add(trialsLoopBegin, trialsLoopScheduler);
 flowScheduler.add(trialsLoopScheduler);
 flowScheduler.add(trialsLoopEnd);
+flowScheduler.add(completionRoutineBegin());
+flowScheduler.add(completionRoutineEachFrame());
+flowScheduler.add(completionRoutineEnd());
 flowScheduler.add(quitPsychoJS, '', true);
 
 // quit if user presses Cancel in dialog box:
@@ -112,6 +115,10 @@ var probe3_copy;
 var probe4_copy;
 var probe5_copy;
 var click_copy;
+var completionClock;
+var completion_text;
+var code;
+var completion_msg;
 var globalClock;
 var routineTimer;
 function experimentInit() {
@@ -471,6 +478,21 @@ function experimentInit() {
     opacity: 1, depth: -5, interpolate: true,
   });
   
+  // Initialize components for Routine "completion"
+  completionClock = new util.Clock();
+  completion_text = new visual.TextStim({
+    win: psychoJS.window,
+    name: 'completion_text',
+    text: 'default text',
+    font: 'Arial',
+    units: undefined, 
+    pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0,
+    color: new util.Color('white'),  opacity: 1,
+    depth: 0.0 
+  });
+  
+  code = Math.random() * 1000;
+  completion_msg = "Your completion code is:\n" + code.toString() + "\nPlease write down this code and then press c to exit this study."
   // Create some handy timers
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
@@ -1556,6 +1578,90 @@ function feedbackRoutineEnd(trials) {
 }
 
 
+var completionComponents;
+function completionRoutineBegin(trials) {
+  return function () {
+    //------Prepare to start Routine 'completion'-------
+    t = 0;
+    completionClock.reset(); // clock
+    frameN = -1;
+    // update component parameters for each repeat
+    completion_text.setText(completion_msg);
+    // keep track of which components have finished
+    completionComponents = [];
+    completionComponents.push(completion_text);
+    
+    completionComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent)
+        thisComponent.status = PsychoJS.Status.NOT_STARTED;
+       });
+    
+    return Scheduler.Event.NEXT;
+  };
+}
+
+
+function completionRoutineEachFrame(trials) {
+  return function () {
+    //------Loop for each frame of Routine 'completion'-------
+    let continueRoutine = true; // until we're told otherwise
+    // get current time
+    t = completionClock.getTime();
+    frameN = frameN + 1;// number of completed frames (so 0 is the first frame)
+    // update/draw components on each frame
+    
+    // *completion_text* updates
+    if (t >= 0.0 && completion_text.status === PsychoJS.Status.NOT_STARTED) {
+      // keep track of start time/frame for later
+      completion_text.tStart = t;  // (not accounting for frame time here)
+      completion_text.frameNStart = frameN;  // exact frame index
+      
+      completion_text.setAutoDraw(true);
+    }
+
+    // check for quit (typically the Esc key)
+    if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+    }
+    
+    // check if the Routine should terminate
+    if (!continueRoutine) {  // a component has requested a forced-end of Routine
+      return Scheduler.Event.NEXT;
+    }
+    
+    continueRoutine = false;  // reverts to True if at least one component still running
+    completionComponents.forEach( function(thisComponent) {
+      if ('status' in thisComponent && thisComponent.status !== PsychoJS.Status.FINISHED) {
+        continueRoutine = true;
+      }
+    });
+    
+    // refresh the screen if continuing
+    if (continueRoutine) {
+      return Scheduler.Event.FLIP_REPEAT;
+    } else {
+      return Scheduler.Event.NEXT;
+    }
+  };
+}
+
+
+function completionRoutineEnd(trials) {
+  return function () {
+    //------Ending Routine 'completion'-------
+    completionComponents.forEach( function(thisComponent) {
+      if (typeof thisComponent.setAutoDraw === 'function') {
+        thisComponent.setAutoDraw(false);
+      }
+    });
+    // the Routine "completion" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset();
+    
+    return Scheduler.Event.NEXT;
+  };
+}
+
+
 function endLoopIteration(thisScheduler, loop) {
   // ------Prepare for next entry------
   return function () {
@@ -1592,6 +1698,8 @@ function quitPsychoJS(message, isCompleted) {
   if (psychoJS.experiment.isEntryEmpty()) {
     psychoJS.experiment.nextEntry();
   }
+  
+  
   
   
   psychoJS.window.close();
